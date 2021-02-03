@@ -42,4 +42,19 @@ public extension UIImage {
 
         return UIGraphicsGetImageFromCurrentImageContext()?.withRenderingMode(self.renderingMode)
     }
+
+    func CC_scaledTo(newSize: CGSize, with mode: UIView.ContentMode = .scaleAspectFit) -> UIImage {
+        precondition(mode == .scaleAspectFit || mode == .scaleAspectFill, "Unsupported content mode: Supported are: .scaleAspectFit and .scaleAspectFill")
+
+        let fn: (CGFloat, CGFloat) -> (CGFloat) = mode == .scaleAspectFit ? min : max
+        let ratio = fn(newSize.width / self.size.width, newSize.height / self.size.height)
+        let scaledSize = CGSize(width: ratio * self.size.width, height: ratio * self.size.height)
+        let origin = CGPoint(x: (newSize.width - scaledSize.width) / 2, y: (newSize.height - scaledSize.height) / 2)
+        let rect = CGRect(origin: origin, size: scaledSize)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
+        defer { UIGraphicsEndImageContext() }
+        self.draw(in: rect)
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return UIImage() }
+        return image
+    }
 }
