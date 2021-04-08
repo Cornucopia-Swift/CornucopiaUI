@@ -1,7 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
-import UIKit
+import UIKit.UIColor
 
 public extension UIColor {
 
@@ -73,6 +73,6 @@ public extension UIColor {
     }
 
     /// Returns true, if the color is considered to be a *dark* color
-    func cc_isDark() -> Bool { !self.CC_isLight() }
+    func CC_isDark() -> Bool { !self.CC_isLight() }
 
 }
