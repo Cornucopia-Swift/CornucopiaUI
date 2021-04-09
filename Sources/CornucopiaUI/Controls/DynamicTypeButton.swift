@@ -4,31 +4,10 @@
 #if !os(watchOS)
 import UIKit.UIControl
 
-@IBDesignable
-public class CC_DynamicTypeButton: UIControl {
+/// A UIButton with a 'primary button' style, optimized for dynamic type.
+@IBDesignable public class CC_DynamicTypeButton: UIControl {
 
     static let TapAnimationDuration: TimeInterval = 0.4
-
-    private lazy var containerView: UIView = {
-        let v = UIView()
-        v.isUserInteractionEnabled = false
-        v.clipsToBounds = true
-        return v
-    }()
-    private lazy var backgroundView: UIView = {
-        let v = UIView()
-        v.backgroundColor = self.tintColor
-        v.isUserInteractionEnabled = false
-        v.layer.cornerRadius = 12
-        v.layer.cornerCurve = CALayerCornerCurve.continuous
-        return v
-    }()
-    private lazy var label: CC_DynamicTypeLabel = {
-        let v = CC_DynamicTypeLabel()
-        v.isUserInteractionEnabled = false
-        v.textColor = .white
-        return v
-    }()
 
     @objc public dynamic var textStyle: UIFont.TextStyle {
         get { UIFont.TextStyle(rawValue: self.label.textStyle!) }
@@ -59,19 +38,6 @@ public class CC_DynamicTypeButton: UIControl {
         self.commonInit()
     }
 
-    private func commonInit() {
-
-        self.containerView.addSubview(self.backgroundView)
-        //self.label = CC_DynamicTypeLabel()
-        self.containerView.addSubview(self.label)
-        self.addSubview(self.containerView)
-
-        self.addTarget(self, action: #selector(didTouchDownInside), for: [.touchDown, .touchDownRepeat])
-        self.addTarget(self, action: #selector(didTouchUpInside), for: .touchUpInside)
-        self.addTarget(self, action: #selector(didDragOutside), for: [.touchDragExit, .touchCancel])
-        self.addTarget(self, action: #selector(didDragInside), for: .touchDragEnter)
-    }
-
     public override var intrinsicContentSize: CGSize {
         let labelSize = self.label.intrinsicContentSize
         return CGSize(width: labelSize.width, height: labelSize.height * 2)
@@ -87,11 +53,48 @@ public class CC_DynamicTypeButton: UIControl {
         self.label.frame = self.label.frame.integral
     }
 
+    public override func tintColorDidChange() {
+        self.backgroundView.backgroundColor = self.tintColor
+    }
 
-
+    //MARK: - private
+    private lazy var containerView: UIView = {
+        let v = UIView()
+        v.isUserInteractionEnabled = false
+        v.clipsToBounds = true
+        return v
+    }()
+    private lazy var backgroundView: UIView = {
+        let v = UIView()
+        v.backgroundColor = self.tintColor
+        v.isUserInteractionEnabled = false
+        v.layer.cornerRadius = 12
+        v.layer.cornerCurve = CALayerCornerCurve.continuous
+        return v
+    }()
+    private lazy var label: CC_DynamicTypeLabel = {
+        let v = CC_DynamicTypeLabel()
+        v.isUserInteractionEnabled = false
+        v.textColor = .white
+        return v
+    }()
 }
 
 extension CC_DynamicTypeButton {
+
+    func commonInit() {
+
+        self.containerView.addSubview(self.backgroundView)
+        self.containerView.addSubview(self.label)
+        self.addSubview(self.containerView)
+        self.backgroundColor = .clear
+
+        self.addTarget(self, action: #selector(didTouchDownInside), for: [.touchDown, .touchDownRepeat])
+        self.addTarget(self, action: #selector(didTouchUpInside), for: .touchUpInside)
+        self.addTarget(self, action: #selector(didDragOutside), for: [.touchDragExit, .touchCancel])
+        self.addTarget(self, action: #selector(didDragInside), for: .touchDragEnter)
+    }
+
 
     func updateLabelAppearance(animated: Bool = true) {
 
@@ -120,7 +123,6 @@ extension CC_DynamicTypeButton {
         }
         UIView.animate(withDuration: Self.TapAnimationDuration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: .beginFromCurrentState, animations: closure, completion: nil)
     }
-
 }
 
 extension CC_DynamicTypeButton {
@@ -149,5 +151,7 @@ extension CC_DynamicTypeButton {
         self.updateBackgroundAppearance()
     }
 }
-#endif
 
+public extension Cornucopia.UI { typealias DynamicTypeButton = CC_DynamicTypeButton }
+
+#endif

@@ -45,15 +45,13 @@ fileprivate final class DynamicTypeSystem {
         }
     }
 
-    var listeningForNotifications: Bool = false
-
     public override var adjustsFontForContentSizeCategory: Bool {
         didSet {
-            if self.adjustsFontSizeToFitWidth && !self.listeningForNotifications {
+            if self.adjustsFontForContentSizeCategory && !self.listeningForNotifications {
                 NotificationCenter.default.addObserver(self, selector: #selector(onContentSizeCategoryDidChange), name: UIContentSizeCategory.didChangeNotification, object: nil)
                 self.listeningForNotifications = true
             }
-            if !self.adjustsFontSizeToFitWidth && self.listeningForNotifications {
+            if !self.adjustsFontForContentSizeCategory && self.listeningForNotifications {
                 NotificationCenter.default.removeObserver(self, name: UIContentSizeCategory.didChangeNotification, object: nil)
             }
         }
@@ -71,6 +69,10 @@ fileprivate final class DynamicTypeSystem {
         guard !composedTextStyle.isEmpty else { return }
         self.updateDynamicType()
     }
+
+    //MARK:- private
+    var listeningForNotifications: Bool = false
+
 }
 
 private extension CC_DynamicTypeLabel {
@@ -101,7 +103,6 @@ private extension CC_DynamicTypeLabel {
         guard !self.composedTextStyle.isEmpty else { return }
         self.updateDynamicType()
     }
-
 }
 
 public extension Cornucopia.UI { typealias DynamicTypeLabel = CC_DynamicTypeLabel }
