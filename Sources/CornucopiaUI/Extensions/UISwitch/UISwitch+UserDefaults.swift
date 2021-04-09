@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(tvOS)
 import CornucopiaCore
 import UIKit.UISwitch
 
@@ -31,3 +32,5 @@ public extension UISwitch {
     }
 
 }
+#endif
+
