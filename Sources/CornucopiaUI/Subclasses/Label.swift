@@ -83,8 +83,8 @@ public class CC_Label: UILabel {
     override public var intrinsicContentSize: CGSize {
         //guard self.numberOfLines == 0 else { fatalError() }
         var size = super.intrinsicContentSize
-        size.height += self.contentInsets.top + self.contentInsets.bottom
-        size.width += self.contentInsets.left + self.contentInsets.right
+        if size.height != UIView.noIntrinsicMetric { size.height += self.contentInsets.top + self.contentInsets.bottom }
+        if size.width != UIView.noIntrinsicMetric { size.width += self.contentInsets.left + self.contentInsets.right }
         return size
     }
 
@@ -196,6 +196,4 @@ private extension CC_Label {
     }
 }
 
-public extension Cornucopia.UI {
-    typealias Label = CC_Label
-}
+public extension Cornucopia.UI { typealias Label = CC_Label }
