@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import CornucopiaCore
 import UIKit
 
@@ -58,3 +59,4 @@ private extension CC_CollectionView {
 
 /// Put it into our namespace for a nicer syntax when using it programmatically
 public extension Cornucopia.UI { typealias CollectionView = CC_CollectionView }
+#endif

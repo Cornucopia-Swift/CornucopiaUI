@@ -1,12 +1,13 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import CornucopiaCore
 import UIKit
 
+@IBDesignable
 public class CC_LineView: UIView {
 
-    //TODO: Make @IBDesignable etc.
     public required init?(coder: NSCoder) {
         fatalError()
     }
@@ -22,8 +23,5 @@ public class CC_LineView: UIView {
     }
 }
 
-public extension Cornucopia.UI {
-
-    typealias LineView = CC_LineView
-
-}
+public extension Cornucopia.UI { typealias LineView = CC_LineView }
+#endif

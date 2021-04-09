@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import CornucopiaCore
 import UIKit.UIViewController
 
@@ -14,3 +15,4 @@ public extension UIViewController {
         self.view.CC_translateStrings()
     }
 }
+#endif

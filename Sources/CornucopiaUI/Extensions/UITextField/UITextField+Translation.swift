@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import UIKit.UITextField
 
 public extension UITextField {
@@ -14,3 +15,4 @@ public extension UITextField {
     }
 
 }
+#endif

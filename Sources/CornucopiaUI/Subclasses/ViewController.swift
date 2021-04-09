@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import CornucopiaCore
 import UIKit.UIViewController
 
@@ -11,3 +12,4 @@ open class CC_ViewController<T>: UIViewController {
 
 /// Put it into our namespace for a nicer syntax when creating programmatically
 public extension Cornucopia.UI { typealias ViewController = CC_ViewController }
+#endif

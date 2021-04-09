@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import CornucopiaCore
 import UIKit.UILabel
 
@@ -197,3 +198,4 @@ private extension CC_Label {
 }
 
 public extension Cornucopia.UI { typealias Label = CC_Label }
+#endif

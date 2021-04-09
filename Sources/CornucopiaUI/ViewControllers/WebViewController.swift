@@ -1,8 +1,8 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if os(iOS)
 import CornucopiaCore
-#if !os(tvOS)
 import WebKit
 
 public extension Cornucopia.UI {

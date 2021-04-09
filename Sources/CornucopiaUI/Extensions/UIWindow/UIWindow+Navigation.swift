@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import UIKit.UIWindow
 
 public extension UIWindow {
@@ -23,3 +24,4 @@ public extension UIWindow {
 
     var CC_topViewController: UIViewController? { _topViewController(self.rootViewController) }
 }
+#endif

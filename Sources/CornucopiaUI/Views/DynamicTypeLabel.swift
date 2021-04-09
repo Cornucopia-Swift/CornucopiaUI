@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import CornucopiaCore
 import UIKit
 
@@ -37,17 +38,38 @@ fileprivate final class DynamicTypeSystem {
 @IBDesignable public class CC_DynamicTypeLabel: CC_Label {
 
     /// The preferred text style. If set, this overrides what is set via the font descriptor.
-    @IBInspectable public var textStyle: String?
+    @IBInspectable public var textStyle: String? {
+        didSet {
+            logger.debug("text style set to \(self.textStyle)")
+            self.updateDynamicType()
+        }
+    }
 
     var listeningForNotifications: Bool = false
 
+    public override var adjustsFontForContentSizeCategory: Bool {
+        didSet {
+            if self.adjustsFontSizeToFitWidth && !self.listeningForNotifications {
+                NotificationCenter.default.addObserver(self, selector: #selector(onContentSizeCategoryDidChange), name: UIContentSizeCategory.didChangeNotification, object: nil)
+                self.listeningForNotifications = true
+            }
+            if !self.adjustsFontSizeToFitWidth && self.listeningForNotifications {
+                NotificationCenter.default.removeObserver(self, name: UIContentSizeCategory.didChangeNotification, object: nil)
+            }
+        }
+    }
+
+    public override var font: UIFont! {
+        didSet {
+            logger.debug("did set font to \(self.font.fontDescriptor)")
+            //TODO: Handle dynamic update while we're already moved to the window
+        }
+    }
+
     public override func willMove(toWindow: UIWindow?) {
         super.willMove(toWindow: toWindow)
-
-        guard !composedTextStyle.isEmpty, !listeningForNotifications else { return }
+        guard !composedTextStyle.isEmpty else { return }
         self.updateDynamicType()
-        NotificationCenter.default.addObserver(self, selector: #selector(onContentSizeCategoryDidChange), name: UIContentSizeCategory.didChangeNotification, object: nil)
-        self.listeningForNotifications = true
     }
 }
 
@@ -83,3 +105,4 @@ private extension CC_DynamicTypeLabel {
 }
 
 public extension Cornucopia.UI { typealias DynamicTypeLabel = CC_DynamicTypeLabel }
+#endif

@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import CornucopiaCore
 import UIKit.UIView
 
@@ -47,3 +48,4 @@ public class CC_EmptyView: UIView {
 }
 
 public extension Cornucopia.UI { typealias EmptyView = CC_EmptyView }
+#endif

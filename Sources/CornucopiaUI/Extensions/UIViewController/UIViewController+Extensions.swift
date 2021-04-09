@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import UIKit.UIViewController
 
 public extension UIViewController {
@@ -21,5 +22,5 @@ public extension UIViewController {
             self.presentingViewController?.dismiss(animated: animated, completion: nil)
         }
     }
-
 }
+#endif

@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import CornucopiaCore
 import UIKit.UIButton
 
@@ -27,3 +28,4 @@ public class CC_UIButton: UIButton {
 
 /// Put it into our namespace for a nicer syntax when creating programmatically
 public extension Cornucopia.UI { typealias Button = CC_UIButton }
+#endif

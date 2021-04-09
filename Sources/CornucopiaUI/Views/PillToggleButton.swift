@@ -1,10 +1,7 @@
 //
-//  File.swift
-//  
+//  Cornucopia – (C) Dr. Lauer Information Technology
 //
-//  Created by Dr. Michael Lauer on 12.12.20.
-//
-
+#if !os(watchOS)
 import CornucopiaCore
 import UIKit.UIButton
 
@@ -41,3 +38,4 @@ private extension CC_PillToggleButton {
 }
 
 public extension Cornucopia.UI { typealias PillToggleButton = CC_PillToggleButton }
+#endif

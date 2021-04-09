@@ -1,10 +1,7 @@
 //
-//  File.swift
-//  
+//  Cornucopia – (C) Dr. Lauer Information Technology
 //
-//  Created by Dr. Michael Lauer on 04.11.20.
-//
-
+#if !os(watchOS)
 import UIKit
 
 public extension UITextField {
@@ -22,3 +19,4 @@ public extension UITextField {
     }
 
 }
+#endif

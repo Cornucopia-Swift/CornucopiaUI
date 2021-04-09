@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import UIKit.UIPageViewController
 
 public extension UIPageViewController {
@@ -10,3 +11,4 @@ public extension UIPageViewController {
     }
 
 }
+#endif

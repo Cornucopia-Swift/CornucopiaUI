@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if canImport(QuartzCore)
 import QuartzCore.CALayer
 import UIKit.UIColor
 
@@ -33,4 +34,4 @@ public extension CALayer {
         }
     }
 }
-
+#endif

@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import UIKit.UIImageView
 
 public extension UIImageView {
@@ -12,3 +13,4 @@ public extension UIImageView {
     }
 
 }
+#endif

@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import UIKit.UIControl
 
 public extension UIControl {
@@ -27,3 +28,4 @@ public extension UIControl {
     }
 
 }
+#endif

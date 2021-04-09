@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import CornucopiaCore
 import UIKit.UICollectionView
 
@@ -41,3 +42,4 @@ public extension Cornucopia.UI {
         }
     }
 }
+#endif

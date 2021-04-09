@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import UIKit.UIButton
 
 public extension UIButton {
@@ -21,3 +22,4 @@ public extension UIButton {
         self.setBackgroundImage(colorImage, for: `for`)
     }
 }
+#endif

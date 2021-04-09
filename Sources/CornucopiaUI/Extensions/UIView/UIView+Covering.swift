@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import UIKit.UIView
 
 public extension UIView {
@@ -45,5 +46,5 @@ public extension UIView {
             effectView.removeFromSuperview()
         }
     }
-
 }
+#endif

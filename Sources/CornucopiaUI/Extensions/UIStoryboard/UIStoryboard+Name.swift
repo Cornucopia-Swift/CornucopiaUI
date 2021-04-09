@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import UIKit.UIStoryboard
 
 public extension UIStoryboard {
@@ -10,3 +11,4 @@ public extension UIStoryboard {
         return name
     }
 }
+#endif

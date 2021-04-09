@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import UIKit.UITextField
 
 public extension UITextField {
@@ -11,3 +12,4 @@ public extension UITextField {
         return text.count < 1
     }
 }
+#endif

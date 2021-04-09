@@ -1,6 +1,7 @@
 //
 // Pretty much a shameless copy of Sam Soffes' https://github.com/soffes/GradientView
 //
+#if !os(watchOS)
 import CornucopiaCore
 import UIKit
 
@@ -191,3 +192,4 @@ private extension CC_GradientView {
 }
 
 public extension Cornucopia.UI { typealias GradientView = CC_GradientView }
+#endif

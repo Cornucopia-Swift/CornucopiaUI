@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import UIKit.UIStackView
 
 public extension UIStackView {
@@ -94,3 +95,4 @@ public extension UIStackView {
         }
     }
 }
+#endif

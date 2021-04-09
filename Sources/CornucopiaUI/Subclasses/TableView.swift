@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import CornucopiaCore
 import UIKit
 
@@ -66,3 +67,4 @@ private extension CC_TableView {
 public extension Cornucopia.UI {
     typealias TableView = CC_TableView
 }
+#endif

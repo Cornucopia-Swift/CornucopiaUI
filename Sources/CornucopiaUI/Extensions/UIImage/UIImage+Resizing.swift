@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import UIKit.UIImage
 
 public extension UIImage {
@@ -58,3 +59,4 @@ public extension UIImage {
         return image
     }
 }
+#endif

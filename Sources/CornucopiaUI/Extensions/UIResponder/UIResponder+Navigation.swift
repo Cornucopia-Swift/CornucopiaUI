@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import UIKit.UIResponder
 
 public extension UIResponder {
@@ -13,4 +14,4 @@ public extension UIResponder {
         return (responder as? T) ?? responder.CC_nextResponder(of: T.self)
     }
 }
-
+#endif

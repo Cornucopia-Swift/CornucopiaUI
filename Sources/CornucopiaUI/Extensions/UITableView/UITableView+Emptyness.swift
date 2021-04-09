@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import UIKit.UITableView
 
 public extension UITableView {
@@ -22,3 +23,4 @@ public extension UITableView {
     }
 
 }
+#endif

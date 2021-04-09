@@ -1,7 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
-#if !os(tvOS)
+#if os(iOS)
 import CornucopiaCore
 import UIKit.UISwitch
 

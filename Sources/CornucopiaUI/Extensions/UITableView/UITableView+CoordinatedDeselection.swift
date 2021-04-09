@@ -1,6 +1,7 @@
 //
 //  Cornucopia – (C) Dr. Lauer Information Technology
 //
+#if !os(watchOS)
 import UIKit.UITableView
 
 public extension UITableView {
@@ -20,5 +21,5 @@ public extension UITableView {
             self.selectRow(at: selectedIndexPath, animated: false, scrollPosition: .none)
         }
     }
-
 }
+#endif
