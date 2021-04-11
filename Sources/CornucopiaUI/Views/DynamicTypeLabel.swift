@@ -35,7 +35,8 @@ fileprivate final class DynamicTypeSystem {
 }
 
 /// A UILabel subclass featuring custom fonts and automatic support for dynamic type.
-@IBDesignable public class CC_DynamicTypeLabel: CC_Label {
+@IBDesignable
+public class CC_DynamicTypeLabel: CC_Label {
 
     /// The preferred text style. If set, this overrides what is set via the font descriptor.
     @IBInspectable public var textStyle: String? {

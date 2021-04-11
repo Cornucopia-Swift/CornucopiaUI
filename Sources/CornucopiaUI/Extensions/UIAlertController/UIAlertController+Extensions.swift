@@ -9,6 +9,7 @@ public extension UIAlertController {
     static func CC_presentInformative(on: UIViewController,
                                       title: String = "",
                                       message: String = "",
+                                      confirmTextKey: String = "OK",
                                       autoDismiss: TimeInterval? = nil,
                                       then: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -18,7 +19,7 @@ public extension UIAlertController {
                 on.dismiss(animated: true, completion: then)
             }
         } else {
-            let okAction = UIAlertAction(title: "OK".CC_localized, style: .default) { _ in
+            let okAction = UIAlertAction(title: confirmTextKey.CC_localized, style: .default) { _ in
                 guard let then = then else { return }
                 then()
             }

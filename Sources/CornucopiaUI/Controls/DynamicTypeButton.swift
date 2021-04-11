@@ -5,7 +5,8 @@
 import UIKit.UIControl
 
 /// A UIButton with a 'primary button' style, optimized for dynamic type.
-@IBDesignable public class CC_DynamicTypeButton: UIControl {
+@IBDesignable
+public class CC_DynamicTypeButton: UIControl {
 
     static let TapAnimationDuration: TimeInterval = 0.4
 
@@ -113,8 +114,8 @@ extension CC_DynamicTypeButton {
         let scale = self.isTouchInside ? self.tappedBackgroundScale : 1.0
         let brightnessOffset = self.isTouchInside ? self.tappedBrightnessOffset : 0.0
         let closure = {
-            self.backgroundView.transform = .identity.scaledBy(x: scale, y: scale)
-            self.label.transform = .identity.scaledBy(x: scale, y: scale)
+            self.backgroundView.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
+            self.label.transform = CGAffineTransform.identity.scaledBy(x: scale, y: scale)
             self.backgroundView.backgroundColor = self.tintColor.CC_brightnessAdjusted(amount: brightnessOffset)
         }
         guard animated else {
