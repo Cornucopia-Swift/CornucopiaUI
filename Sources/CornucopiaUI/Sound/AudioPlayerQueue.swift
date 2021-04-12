@@ -4,29 +4,32 @@
 #if canImport(AVFoundation)
 import AVFoundation
 
-public class AudioPlayerQueue: NSObject {
+public extension Cornucopia.UI {
 
-    var player: AVAudioPlayer?
-    var urls: [URL] = []
+    class AudioPlayerQueue: NSObject {
 
-    public static var `default` = AudioPlayerQueue()
-    override private init() { }
+        var player: AVAudioPlayer?
+        var urls: [URL] = []
 
-    public func play(url: URL) {
-        precondition(Thread.isMainThread, "This API is not thread-safe. Please call it from the main thread instead.")
+        public static var `default` = AudioPlayerQueue()
+        override private init() { }
 
-        guard let _ = player else {
-            guard let player = try? AVAudioPlayer(contentsOf: url) else { return }
-            self.player = player
-            player.delegate = self
-            player.play()
-            return
+        public func play(url: URL) {
+            precondition(Thread.isMainThread, "This API is not thread-safe. Please call it from the main thread instead.")
+
+            guard let _ = player else {
+                guard let player = try? AVAudioPlayer(contentsOf: url) else { return }
+                self.player = player
+                player.delegate = self
+                player.play()
+                return
+            }
+            self.urls.append(url)
         }
-        self.urls.append(url)
     }
 }
 
-extension AudioPlayerQueue: AVAudioPlayerDelegate {
+extension Cornucopia.UI.AudioPlayerQueue: AVAudioPlayerDelegate {
 
     public func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         self.player = nil
