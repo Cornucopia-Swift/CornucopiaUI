@@ -15,7 +15,7 @@ public class CC_DynamicTypeButton: UIControl {
         set { self.label.textStyle = newValue.rawValue }
     }
 
-    @IBInspectable var text: String? {
+    @IBInspectable public var title: String? {
         get { self.label.text }
         set {
             self.label.text = newValue
