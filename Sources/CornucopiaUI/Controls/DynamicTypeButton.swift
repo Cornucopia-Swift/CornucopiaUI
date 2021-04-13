@@ -19,6 +19,7 @@ public class CC_DynamicTypeButton: UIControl {
         get { self.label.text }
         set {
             self.label.text = newValue
+            self.setNeedsLayout()
             self.invalidateIntrinsicContentSize()
         }
     }
