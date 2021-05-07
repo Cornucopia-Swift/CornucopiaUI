@@ -11,8 +11,9 @@ public extension UIAlertController {
                                       message: String = "",
                                       confirmTextKey: String = "OK",
                                       autoDismiss: TimeInterval? = nil,
+                                      preferredStyle: UIAlertController.Style = .alert,
                                       then: (() -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         if let autoDismiss = autoDismiss {
             on.present(alert, animated: true, completion: nil)
             DispatchQueue.main.asyncAfter(deadline: .now() + autoDismiss) {
@@ -34,9 +35,10 @@ public extension UIAlertController {
                                        confirmTextKey: String = "OK",
                                        cancelTextKey: String = "CANCEL",
                                        destructive: Bool = false,
+                                       preferredStyle: UIAlertController.Style = .alert,
                                        confirmHandler: @escaping((UIAlertAction) -> Void),
                                        cancelHandler: ((UIAlertAction) -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         let cancelAction = UIAlertAction(title: cancelTextKey.CC_localized, style: .cancel, handler: cancelHandler)
         let okAction = UIAlertAction(title: confirmTextKey.CC_localized, style: destructive ? .destructive : .default, handler: confirmHandler)
         alert.addAction(okAction)
