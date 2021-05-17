@@ -6,9 +6,13 @@ import UIKit.UIView
 
 public extension UIView {
 
-    func CC_addSubview(_ view: UIView) {
+    func CC_addSubview(_ view: UIView, at index: Int = -1) {
         view.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(view)
+        if index == -1 {
+            self.addSubview(view)
+        } else {
+            self.insertSubview(view, at: index)
+        }
         NSLayoutConstraint.activate([
             self.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             self.trailingAnchor.constraint(equalTo: view.trailingAnchor),
