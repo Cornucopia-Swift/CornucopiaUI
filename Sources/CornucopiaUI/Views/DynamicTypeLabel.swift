@@ -9,8 +9,14 @@ fileprivate var logger = Cornucopia.Core.Logger(category: "DynamicTypeSystem")
 
 public extension UIFontDescriptor {
 
-    /// Register `self` as default font given the `textStyle`.
+    /// Register `self` as default font descriptor for the given `textStyle`.
     func CC_setDynamicTypeLabelDefault(for textStyle: UIFont.TextStyle) { DynamicTypeSystem.registerFontDescriptor(self, forStyle: textStyle) }
+}
+
+public extension UIColor {
+
+    /// Register `self` as default foreground color for the given `textStyle`.
+    func CC_setDynamicTypeLabelDefault(for textStyle: UIFont.TextStyle) { DynamicTypeSystem.registerForegroundColor(self, forStyle: textStyle) }
 }
 
 fileprivate final class DynamicTypeSystem {
@@ -21,12 +27,16 @@ fileprivate final class DynamicTypeSystem {
     static public func registerFontDescriptor(_ fontDescriptor: UIFontDescriptor, forStyle: String) {
         self.registeredFontStyles[forStyle] = fontDescriptor
     }
+    static public func registerForegroundColor(_ color: UIColor, forStyle: UIFont.TextStyle) {
+        // not yet implemented
+    }
 
     static var registeredFontStyles: [String: UIFontDescriptor] = [:]
+    static var registeredFontColors: [String: UIColor] = [:]
 
     static func fontDescriptor(forStyle: String) -> UIFontDescriptor {
         guard let fontDescriptor = self.registeredFontStyles[forStyle] else {
-            logger.notice("Did not find a registered font style for '\(forStyle)', using default")
+            logger.debug("Did not find a registered font style for '\(forStyle)', using default")
             let textStyle = UIFont.TextStyle.init(rawValue: forStyle)
             return UIFontDescriptor.preferredFontDescriptor(withTextStyle: textStyle)
         }
@@ -41,7 +51,7 @@ public class CC_DynamicTypeLabel: CC_Label {
     /// The preferred text style. If set, this overrides what is set via the font descriptor.
     @IBInspectable public var textStyle: String? {
         didSet {
-            logger.debug("text style set to \(self.textStyle)")
+            logger.trace("text style set to \(self.textStyle)")
             self.updateDynamicType()
         }
     }
@@ -60,7 +70,7 @@ public class CC_DynamicTypeLabel: CC_Label {
 
     public override var font: UIFont! {
         didSet {
-            logger.debug("did set font to \(self.font.fontDescriptor)")
+            logger.trace("did set font to \(self.font.fontDescriptor)")
             //TODO: Handle dynamic update while we're already moved to the window
         }
     }
