@@ -46,5 +46,9 @@ public extension UIAlertController {
         on.present(alert, animated: true, completion: nil)
     }
 
+    static func CC_notYetImplemented(_ title: String = "Not Yet Implemented", on: UIViewController, then: (() -> Void)? = nil) {
+        self.CC_presentInformative(on: on, title: title, message: "I'm sorry, but this feature is not implemented yet", autoDismiss: 3, preferredStyle: .alert, then: then)
+    }
+
 }
 #endif
