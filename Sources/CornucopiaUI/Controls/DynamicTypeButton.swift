@@ -15,6 +15,13 @@ public class CC_DynamicTypeButton: UIControl {
         set { self.label.textStyle = newValue.rawValue }
     }
 
+    public lazy var label: CC_DynamicTypeLabel = {
+        let v = CC_DynamicTypeLabel()
+        v.isUserInteractionEnabled = false
+        v.textColor = .white
+        return v
+    }()
+
     @IBInspectable public var title: String? {
         get { self.label.text }
         set {
@@ -72,12 +79,6 @@ public class CC_DynamicTypeButton: UIControl {
         v.isUserInteractionEnabled = false
         v.layer.cornerRadius = 12
         v.layer.cornerCurve = CALayerCornerCurve.continuous
-        return v
-    }()
-    private lazy var label: CC_DynamicTypeLabel = {
-        let v = CC_DynamicTypeLabel()
-        v.isUserInteractionEnabled = false
-        v.textColor = .white
         return v
     }()
 }
