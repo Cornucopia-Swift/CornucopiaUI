@@ -90,7 +90,7 @@ private extension CC_DynamicTypeLabel {
 
     var implicitTextStyle: String {
         guard let font = self.font else { return "" }
-        guard let style = font.fontDescriptor.fontAttributes[UIFontDescriptor.AttributeName.textStyle] as? String else { return ""}
+        guard let style = font.fontDescriptor.fontAttributes[UIFontDescriptor.AttributeName.textStyle] as? String else { return "" }
         return style
     }
 
