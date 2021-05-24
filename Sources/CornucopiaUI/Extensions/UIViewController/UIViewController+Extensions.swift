@@ -16,11 +16,15 @@ public extension UIViewController {
     }
 
     @IBAction func CC_dismissAnimated(_ animated: Bool = true) {
-        if self.navigationController != nil && self.navigationController?.viewControllers.first != self {
-            self.navigationController?.popViewController(animated: animated)
-        } else {
-            self.presentingViewController?.dismiss(animated: animated, completion: nil)
+        if let presentingViewController = self.presentingViewController {
+            presentingViewController.dismiss(animated: animated, completion: nil)
+            return
         }
+        if let navigationController = self.navigationController, navigationController.viewControllers.first != self {
+            navigationController.popViewController(animated: animated)
+            return
+        }
+        print("Sorry, but I don't know how to dismiss myself :-(")
     }
 }
 #endif
