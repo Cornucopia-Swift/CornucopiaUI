@@ -9,6 +9,8 @@ public extension Cornucopia.UI {
 
     class PageViewControllerDataSource<CONTROLLER_TYPE: UIViewController>: NSObject, UIPageViewControllerDataSource where CONTROLLER_TYPE: Cornucopia.Core.Configurable & Cornucopia.Core.Indexable {
 
+        public var supportsPageControl: Bool = false
+
         public let modelItemProvider: Cornucopia.Core.AnyItemProvider<CONTROLLER_TYPE.MODEL_TYPE>
         let controllerName = String(describing: CONTROLLER_TYPE.self)
 
@@ -53,6 +55,14 @@ public extension Cornucopia.UI {
             viewController.index = nextIndex
             viewController.configure(for: item)
             return viewController
+        }
+
+        public func presentationCount(for pageViewController: UIPageViewController) -> Int { self.supportsPageControl ? self.modelItemProvider.numberOfItems(in: 0) : 0 }
+        public func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+            guard self.supportsPageControl else { return -1 }
+            guard let controller = pageViewController.CC_visibleViewController else { return -1 }
+            guard let typedController = controller as? CONTROLLER_TYPE else { fatalError("View Controller \(controller) is not of required type \(CONTROLLER_TYPE.self)") }
+            return typedController.index
         }
     }
 }
