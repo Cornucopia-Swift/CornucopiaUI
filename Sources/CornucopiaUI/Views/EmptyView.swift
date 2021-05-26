@@ -8,6 +8,10 @@ import UIKit.UIView
 /// A decorative view for when there is no actual content.
 public class CC_EmptyView: UIView {
 
+    static let PrimaryAlpha: CGFloat = 0.65
+    static let SecondaryAlpha: CGFloat = 0.6
+    static let IconScaling: CGFloat = 0.35
+
     public required init(coder: NSCoder) {
         fatalError()
     }
@@ -17,10 +21,10 @@ public class CC_EmptyView: UIView {
 
         let imageView = UIImageView(image: icon)
         imageView.contentMode = .scaleAspectFit
-        imageView.alpha = 0.6
+        imageView.alpha = Self.SecondaryAlpha
 
-        let titleLabel = UILabel()
-        titleLabel.alpha = 0.65
+        let titleLabel = UILabel.CC_init()
+        titleLabel.alpha = Self.PrimaryAlpha
         #if !os(tvOS)
         titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         #else
@@ -28,8 +32,8 @@ public class CC_EmptyView: UIView {
         #endif
         titleLabel.text = title
 
-        let subtitleLabel = UILabel()
-        subtitleLabel.alpha = 0.6
+        let subtitleLabel = UILabel.CC_init()
+        subtitleLabel.alpha = Self.SecondaryAlpha
         subtitleLabel.font = UIFont.preferredFont(forTextStyle: .title3)
         subtitleLabel.text = subtitle
 
@@ -40,10 +44,12 @@ public class CC_EmptyView: UIView {
         stackView.alignment = .center
         self.addSubview(stackView)
 
-        stackView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        imageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.35).isActive = true
-        imageView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.35).isActive = true
+        NSLayoutConstraint.activate([
+            stackView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            imageView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: Self.IconScaling),
+            imageView.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: Self.IconScaling),
+        ])
     }
 }
 
