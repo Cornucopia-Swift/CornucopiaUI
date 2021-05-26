@@ -31,25 +31,25 @@ public extension UIView {
             case .top:
                 NSLayoutConstraint.activate([
                     self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -inset),
-                    self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
+                    self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: inset),
                     self.topAnchor.constraint(equalTo: view.topAnchor, constant: -margin)
                 ])
             case .bottom:
                 NSLayoutConstraint.activate([
                     self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -inset),
-                    self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -inset),
+                    self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: inset),
                     self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -margin),
                 ])
             case .left:
                 NSLayoutConstraint.activate([
                     self.topAnchor.constraint(equalTo: view.topAnchor, constant: -inset),
-                    self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -inset),
+                    self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: inset),
                     self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -margin),
                 ])
             case .right:
                 NSLayoutConstraint.activate([
                     self.topAnchor.constraint(equalTo: view.topAnchor, constant: -inset),
-                    self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -inset),
+                    self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: inset),
                     self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margin),
                 ])
             default:
