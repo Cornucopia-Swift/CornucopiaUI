@@ -7,6 +7,9 @@ import UIKit.UITableView
 
 public extension Cornucopia.UI {
 
+    /// A ready-made TableViewDataSource useful for a fixed amount of data.
+    /// NOTE: Classic-style editing is no longer supported. This is better handled
+    /// via swipe actions in the `UITableViewDelegate`.
     class TableViewDataSource<CELL_TYPE: UITableViewCell>: NSObject, UITableViewDataSource where CELL_TYPE: Cornucopia.Core.Configurable {
 
         public let itemProvider: Cornucopia.Core.AnyItemProvider<CELL_TYPE.MODEL_TYPE>
@@ -24,8 +27,7 @@ public extension Cornucopia.UI {
             tableView.dataSource = self
         }
 
-        //MARK: - <UITableViewDataSource>
-
+        //MARK: <UITableViewDataSource>
         public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             self.itemProvider.numberOfItems(in: section)
         }
