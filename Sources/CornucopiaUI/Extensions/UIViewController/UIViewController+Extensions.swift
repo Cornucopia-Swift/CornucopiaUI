@@ -20,10 +20,18 @@ public extension UIViewController {
             presentingViewController.dismiss(animated: animated, completion: nil)
             return
         }
-        if let navigationController = self.navigationController, navigationController.viewControllers.first != self {
-            navigationController.popViewController(animated: animated)
+
+        if let navigationController = self.navigationController {
+
+            if navigationController.viewControllers.first != self {
+                navigationController.popViewController(animated: animated)
+                return
+            }
+
+            navigationController.CC_dismissAnimated()
             return
         }
+
         print("Sorry, but I don't know how to dismiss myself :-(")
     }
 }
