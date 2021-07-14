@@ -46,6 +46,8 @@ public class CC_EmptyView: UIView {
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .center
+        // ideally taken from the parent `UIViewController`'s `systemMinimumLayoutMargins`
+        stackView.CC_setFixedPadding(UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16))
         self.addSubview(stackView)
 
         NSLayoutConstraint.activate([
