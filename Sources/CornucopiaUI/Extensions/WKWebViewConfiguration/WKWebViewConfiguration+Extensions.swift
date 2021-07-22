@@ -7,19 +7,17 @@ import WebKit.WKWebViewConfiguration
 public extension WKWebViewConfiguration {
 
     static func CC_withFullscreenViewportUserContentController() -> WKWebViewConfiguration {
-        let jscript = """
-                    var meta = document.createElement('meta');
-                    meta.setAttribute('name', 'viewport');
-                    meta.setAttribute('content', 'width=device-width');
-                    document.getElementsByTagName('head')[0].appendChild(meta);
-               """
-        let userScript = WKUserScript(source: jscript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-        let userController = WKUserContentController()
-        userController.addUserScript(userScript)
+        let userController = Self.CC_fullscreenViewportUserContentController
         let configuration = WKWebViewConfiguration()
         configuration.userContentController = userController
         return configuration
     }
 
+    static var CC_fullscreenViewportUserContentController: WKUserContentController = {
+        let userScript = WKUserScript.CC_withFullscreenViewport()
+        let userContentController = WKUserContentController()
+        userContentController.addUserScript(userScript)
+        return userContentController
+    }()
 }
 #endif
