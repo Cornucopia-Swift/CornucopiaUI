@@ -6,9 +6,9 @@ import PackageDescription
 let package = Package(
     name: "CornucopiaUI",
     platforms: [
-        .iOS(.v13),
-        .macOS(.v10_15),
-        .tvOS(.v13),
+        .iOS("13.4"),
+        .macOS(.v11),
+        .tvOS("13.4"),
         .watchOS(.v6),
     ],
     products: [
