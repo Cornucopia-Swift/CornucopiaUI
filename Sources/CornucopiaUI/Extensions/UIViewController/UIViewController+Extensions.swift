@@ -15,9 +15,9 @@ public extension UIViewController {
         }
     }
 
-    @IBAction func CC_dismissAnimated(_ animated: Bool = true) {
+    @IBAction func CC_dismissAnimated(_ animated: Bool = true, completion: (() -> Void)? = nil) {
         if let presentingViewController = self.presentingViewController {
-            presentingViewController.dismiss(animated: animated, completion: nil)
+            presentingViewController.dismiss(animated: animated, completion: completion)
             return
         }
 
@@ -25,10 +25,11 @@ public extension UIViewController {
 
             if navigationController.viewControllers.first != self {
                 navigationController.popViewController(animated: animated)
+                completion?()
                 return
             }
 
-            navigationController.CC_dismissAnimated()
+            navigationController.CC_dismissAnimated(animated, completion: completion)
             return
         }
 

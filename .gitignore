@@ -19,3 +19,4 @@ DerivedData
 # SPM
 Package.resolved
 .build
+.swiftpm
