@@ -5,6 +5,8 @@
 import CornucopiaCore
 import UIKit.UILabel
 
+private let logger = Cornucopia.Core.Logger()
+
 /* A `UILabel` subclass with additional features:
    - An optional decorative line to the left and/or right.
    - An inline edit mode for one-line labels.
@@ -15,7 +17,11 @@ public class CC_Label: UILabel {
     private var currentTextRect: CGRect = .zero
     private weak var editingTextField: UITextField! {
         didSet {
-            print("editingTextField now \(editingTextField)")
+            if let textField = self.editingTextField {
+                logger.trace("editingTextField now \(textField)")
+            } else {
+                logger.trace("editingTextField now nil")
+            }
         }
     }
     private var editingCompletionHandler: ((String) -> (Bool))!

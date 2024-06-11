@@ -51,7 +51,11 @@ public class CC_DynamicTypeLabel: CC_Label {
     /// The preferred text style. If set, this overrides what is set via the font descriptor.
     @IBInspectable public var textStyle: String? {
         didSet {
-            logger.trace("text style set to \(self.textStyle)")
+            if let style = self.textStyle {
+                logger.trace("text style set to \(style)")
+            } else {
+                logger.trace("text style set to nil")
+            }
             self.updateDynamicType()
         }
     }

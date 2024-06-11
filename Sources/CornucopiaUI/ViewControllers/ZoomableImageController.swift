@@ -71,8 +71,8 @@ extension Cornucopia.UI {
             self.view.backgroundColor = .black
             self.view.addSubview(self.scrollView)
 
-            self.scrollView.backgroundColor = .purple
-            self.imageView.backgroundColor = .blue
+            //self.scrollView.backgroundColor = .purple
+            //self.imageView.backgroundColor = .blue
 
             self.scrollView.addSubview(self.imageView)
             if let image = self.imageView.image {
