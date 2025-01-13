@@ -72,7 +72,7 @@ public extension UIStackView {
     }
 
     /// Add a subview to arrange plus a spacing (along the configured axis) afterwards
-    func CC_addArrangedSubview(_ view: UIView, spacing: CGFloat) {
+    func CC_addArrangedSubview(_ view: UIView, spacing: CGFloat = 0) {
         self.addArrangedSubview(view)
         if spacing > 0 {
             self.setCustomSpacing(spacing, after: view)
